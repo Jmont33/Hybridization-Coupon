@@ -6,7 +6,7 @@ from threading import Lock, Thread
 def setSpeed( speed ):
     arduino.lock.acquire( timeout = 2 )
     try:
-        ret = arduino.setSpeed( speed )
+        ret = arduino.setSpeed( speed );
     finally:
         arduino.lock.release()
 def setGoal( steps ):
@@ -76,7 +76,7 @@ def quarterStroke(mixduration = 20):
 
 
 def cooldown(duration = 300):
-    input("Remove Coupon. Cooling down for 5 minutes - input random keystroke to continue")
+    input("Remove Coupon. Cool down for 5 minutes - input random keystroke to start timer")
     print("cooldown duration in seconds: ", duration)
     time.sleep(duration)
 
@@ -129,8 +129,8 @@ def wash(cycles = 3 , washduration = 2):
         quarterStroke(washduration)
         print("Start picode retention within wash")
         picodeRetention(strokedist = 1625)
-        print("remove wash buffer and replace with fresh washbuffer- press key to continue")
-        print("remove coupon from magnet - press any key to continue")
+        print("remove wash buffer and replace with fresh washbuffer")
+        print("remove coupon from magnet")
 
     print("washing completed")
                       
@@ -138,14 +138,14 @@ def hybonly():
     #to change the mixduration pass integer in minutes
     #to select hyb mixing
     selectHybMixing()
-    cooldown(20)
+    cooldown()
     picodeRetention()
     reset()
 
 def hybAndWash():
-    #selectHybMixing()
-    #cooldown()
-    #picodeRetention()
+    selectHybMixing()
+    cooldown()
+    picodeRetention()
     wash()
     reset()
 
@@ -164,4 +164,4 @@ if __name__ == '__main__':
         
         
     arduino.close()
-
+    print("Arduino closed")
