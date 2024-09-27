@@ -25,7 +25,7 @@ from HybCouponClass import Coupon
 
 ###############################################################
 
-c1 = Coupon
+c1 = Coupon()
 
 def hybonly():
     c1.selectHybMixing(mixduration = 20)
